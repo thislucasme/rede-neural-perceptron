@@ -6,7 +6,7 @@ import { guessType, generateRandomWeights, train } from './neuron';
 
 function App() {
 
-  const [points, setPoints] = useState(generatePoints(100));
+  const [points] = useState(generatePoints(100));
   const [weigts, setWeigths] = useState(generateRandomWeights)
 
   const charPointClassifier = (point:{}[]) => {
