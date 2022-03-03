@@ -12,6 +12,7 @@ function App() {
   const charPointClassifier = (point:{}[]) => {
     //return getType(point)
     return guessType(weigts, point)
+    //
   }
 
   const traingInteraction = 10000;
