@@ -1,4 +1,13 @@
-import { HStack, useToast, VStack } from '@chakra-ui/react';
+import {
+  HStack, useToast, VStack, Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { Button, Input, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import './App.css';
@@ -17,6 +26,8 @@ function App() {
   const [valorY, setValorY] = useState('');
 
   const [previsao, setPrevisao] = useState<number>(0)
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const charPointClassifier = (point: {}[]) => {
 
@@ -74,30 +85,57 @@ function App() {
   }
 
   return (
-    <VStack w="100%" mr={10}>
-      <HStack w="full" h={"600px"} mr={"20px"}>
+    <>
+      <VStack w="100%" mr={10}>
+        <HStack w="full" h={"600px"} mr={"20px"}>
 
-        <Chart points={points} pointClassifier={charPointClassifier} />
+          <Chart points={points} pointClassifier={charPointClassifier} />
 
-        <VStack w="400px">
-          <Text style={{ fontSize: "20px" }}>Peso: x {weigts.x}</Text>
-          <Text style={{ fontSize: "20px" }}>Peso: x {weigts.y}</Text>
-          <Input value={iteracoes} style={{ width: "100%" }} size='md' name={(iteracoes).toString()} onChange={(e: any) => setIteracoes(e.target.value)} type={"number"} placeholder={"Iterações"} />
-          <Button style={{ width: "100%" }} size='md' color={"green"} className='train' onClick={onTrainClick}>Treinar</Button>
-          <Input style={{ width: "100%" }} size='md' name={valorX} onChange={(e: any) => setValorX(e.target.value)} type={"number"} placeholder={"x"} />
-          <Input style={{ width: "100%" }} size='md' name={valorY} onChange={(e: any) => setValorY(e.target.value)} type={"number"} placeholder={"y"} />
-          <Button onClick={() => {
-            predizer()
-          }} color={"yellow"} variant='outline' style={{ width: "100%" }} size='md'>Adivinhar</Button>
+          <VStack w="400px">
+            <Text style={{ fontSize: "20px" }}>Peso: x {weigts.x}</Text>
+            <Text style={{ fontSize: "20px" }}>Peso: x {weigts.y}</Text>
+            <Input value={iteracoes} style={{ width: "100%" }} size='md' name={(iteracoes).toString()} onChange={(e: any) => setIteracoes(e.target.value)} type={"number"} placeholder={"Iterações"} />
+            <Button style={{ width: "100%" }} size='md' color={"green"} className='train' onClick={onTrainClick}>Treinar</Button>
+            <Input style={{ width: "100%" }} size='md' name={valorX} onChange={(e: any) => setValorX(e.target.value)} type={"number"} placeholder={"x"} />
+            <Input style={{ width: "100%" }} size='md' name={valorY} onChange={(e: any) => setValorY(e.target.value)} type={"number"} placeholder={"y"} />
+            <Button onClick={() => {
+              predizer();
+              onOpen();
+            }} color={"yellow"} variant='outline' style={{ width: "100%" }} size='md'>Adivinhar</Button>
 
-          <VStack w={"full"}>
-            <Text style={{ fontSize: "20px" }}>Previsão de cor do ponto: x {valorY} e y {valorY}</Text>
-            {previsao < 0 ? <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"blue"}></VStack> : <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"red"}></VStack>}
+            <VStack w={"full"}>
+              <Text style={{ fontSize: "20px" }}>Previsão de cor do ponto: x {valorY} e y {valorY}</Text>
+              {previsao < 0 ? <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"blue"}></VStack> : <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"red"}></VStack>}
+            </VStack>
           </VStack>
-        </VStack>
-      </HStack>
+        </HStack>
 
-    </VStack >
+      </VStack >
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Previsão</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack>
+              <Text style={{ fontSize: "20px" }}>Previsão de cor do ponto: x {valorY} e y {valorY}:</Text>
+              {previsao < 0 ?
+                <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"blue"}></VStack>
+                :
+                <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"red"}></VStack>}
+            </VStack>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button onClick={onClose}>
+              Ok
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+    </>
   );
 }
 
