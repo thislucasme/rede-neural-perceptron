@@ -1,3 +1,4 @@
+Redes Neurais Artificiais
+Perceptron
 
-[rede neural](https://rede-neural-perceptron.vercel.app/)
-![name-of-you-image](https://s7.gifyu.com/images/Record_2022_03_03_00_08_16_181.gif)
+O Perceptron, idealizado por Rosennblatt (1958), é a forma mais simples de configuração de uma rede neural artificial, cujo o propósito focava em implementar um modelo computacional inspirado na retina, objetivando-se então um elemento de percepção eletrônica de sinais.
