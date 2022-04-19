@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { HStack, useToast, VStack } from '@chakra-ui/react';
 import { Button, Input, Text } from '@mantine/core';
+import React, { useState } from 'react';
 import './App.css';
 import { Chart } from './components/Chart';
-import { generatePoints, getType, generatePoint } from './util/dataGenerator';
-import { guessType, generateRandomWeights, train } from './neuron';
-import { HStack, VStack, Box } from '@chakra-ui/react';
+import { generateRandomWeights, guessType, train } from './neuron';
+import { generatePoint, generatePoints, getType } from './util/dataGenerator';
 
 
 function App() {
-
+  const toast = useToast()
   const [points, setPoints] = useState(generatePoints(100));
   const [weigts, setWeigths] = useState(generateRandomWeights)
   const [iteracoes, setIteracoes] = useState(100);
@@ -35,11 +35,11 @@ function App() {
 
 
     //return getType(point)
-    const pesos = {
-      x: 2782.033860012798,
-      y: -2810.410407802219
+    // const pesos = {
+    //   x: 2782.033860012798,
+    //   y: -2810.410407802219
 
-    }
+    // }
 
     const ponto = {
       x: valorX,
@@ -62,18 +62,26 @@ function App() {
       console.log(newWeights)
 
     }
+    toast({
+      title: 'Rede neural treinada',
+      description: "Rede neural treinada com sucesso.",
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    })
+
     setWeigths(newWeights)
   }
 
   return (
-    <VStack w="100%" mr={3}>
+    <VStack w="100%" mr={10}>
       <HStack w="full" h={"600px"} mr={"20px"}>
 
         <Chart points={points} pointClassifier={charPointClassifier} />
 
-        <VStack w="full">
-          <Text style={{ fontSize: "20px" }}>Weights: x {weigts.x}</Text>
-          <Text style={{ fontSize: "20px" }}>Weights: x {weigts.y}</Text>
+        <VStack w="400px">
+          <Text style={{ fontSize: "20px" }}>Peso: x {weigts.x}</Text>
+          <Text style={{ fontSize: "20px" }}>Peso: x {weigts.y}</Text>
           <Input value={iteracoes} style={{ width: "100%" }} size='md' name={(iteracoes).toString()} onChange={(e: any) => setIteracoes(e.target.value)} type={"number"} placeholder={"Iterações"} />
           <Button style={{ width: "100%" }} size='md' color={"green"} className='train' onClick={onTrainClick}>Treinar</Button>
           <Input style={{ width: "100%" }} size='md' name={valorX} onChange={(e: any) => setValorX(e.target.value)} type={"number"} placeholder={"x"} />
