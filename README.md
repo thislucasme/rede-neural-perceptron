@@ -17,7 +17,7 @@ O Perceptron, idealizado por Rosennblatt (1958), é a forma mais simples de conf
 
 ## Demonstração
  
- - [link demonstração] (rede-neural-perceptron.vercel.app)
+ - [link demonstração] (https://rede-neural-perceptron.vercel.app/)
 
 ## Autores
 
