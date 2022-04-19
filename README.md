@@ -11,6 +11,13 @@ O Perceptron, idealizado por Rosennblatt (1958), é a forma mais simples de conf
 - Vizualizar o modelo (Pesos)
 - Adicionar um novo ponto e esperar que a rede acerte a sua cor.
 
+## Objetivo
+
+É traçado uma reta no plano cartesiano, no primeiro momento a rede vai organizar os pontos em cores totalmente aleatória. E que é o esperado já que a rede neural não foi treinada ainda. Após definir o quanto de iteração vai ter (recomendável 10000), a rede é treinada, e a partir desse ponto o seu modelo fica salvo assim sendo possível adicionar novos pontos no plano, e a rede tentará dizer qual cor é aquele ponto se baseando no treinamento.
+
+## Demonstração
+ 
+ - [link demonstração] (rede-neural-perceptron.vercel.app)
 
 ## Autores
 
