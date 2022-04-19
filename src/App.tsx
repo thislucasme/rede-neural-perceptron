@@ -119,7 +119,7 @@ function App() {
           <ModalCloseButton />
           <ModalBody>
             <VStack>
-              <Text style={{ fontSize: "20px" }}>Previsão de cor do ponto: x {valorY} e y {valorY}:</Text>
+              <Text style={{ fontSize: "20px" }}>Previsão de cor do ponto: x {valorX} e y {valorY}:</Text>
               {previsao < 0 ?
                 <VStack borderRadius={"100%"} w={"10px"} h={"10px"} bg={"blue"}></VStack>
                 :
