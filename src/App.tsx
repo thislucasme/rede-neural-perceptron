@@ -1,19 +1,19 @@
 import {
-  HStack, useToast, VStack, Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
+  HStack,
+  Input,
+  Modal, ModalBody,
+  ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast, VStack
 } from '@chakra-ui/react';
-import { Button, Input, Text } from '@mantine/core';
-import React, { useState } from 'react';
+import { ParticlesComponent } from './ParticlesComponent';
+import { Button, Text } from '@mantine/core';
+import { useState } from 'react';
 import './App.css';
-import { Chart } from './components/Chart';
 import { generateRandomWeights, guessType, train } from './neuron';
 import { generatePoint, generatePoints, getType } from './util/dataGenerator';
+import { Chart } from './components/Chart';
+
+import Particle from "react-particles-js";
+import particlesConfig from "../src/assets/config.json";
 
 
 function App() {
@@ -86,7 +86,13 @@ function App() {
 
   return (
     <>
-      <VStack w="100%" mr={10}>
+
+      <VStack w={"full"} className={"teste"}>
+        <ParticlesComponent />
+
+      </VStack>
+      <Text className='teste01'>hell</Text>
+      <VStack w="50%" mr={10}>
         <HStack w="full" h={"600px"} mr={"20px"}>
 
           <Chart points={points} pointClassifier={charPointClassifier} />
