@@ -1,8 +1,17 @@
 .teste {
 	background-color: brown;
 position: absolute;
+z-index: -1;
 }
 .teste01 {
 	
 	position: relative;
+}
+.texto {
+	text-shadow: -2px 1px 3px #101010;
+	color: white;
+	font-weight: 600;
+}
+.grafico {
+	background-color: rgb(235, 235, 235);
 }
